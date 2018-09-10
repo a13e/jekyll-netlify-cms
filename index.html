@@ -38,7 +38,7 @@ layout: default
       </div>
       <div>
         {% for post in paginator.posts %}
-          <div>
+          <div class="post">
             <h3 style="margin-bottom: 0.4375rem;"><a href="{{ post.url | relative_url }}" style="box-shadow: none;">{{ post.title }}</a></h3>
             <small><time>{{ post.date | date: '%B %d, %Y' }}</time></small>
             <p class="excerpt">{{ post.excerpt }}</p>
