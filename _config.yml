@@ -22,6 +22,11 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: a13e_
 github_username:  a13e
 
+collections:
+  works:
+    output: true
+    permalink: /:collection/:name
+
 # Build settings
 markdown: kramdown
 plugins:

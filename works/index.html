@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /works/
 ---
 
 <!DOCTYPE html>
@@ -42,11 +43,12 @@ layout: default
         <p>Written by <strong>Kohei Abe</strong> who lives and works in Tokyo building useful things.<a href="https://twitter.com/a13e_" target="_blank">You should follow him on Twitter</a></p>
       </div>
       <div>
-        {% for post in paginator.posts %}
-          <div class="post">
-            <h3 style="margin-bottom: 0.4375rem;"><a href="{{ post.url | relative_url }}" style="box-shadow: none;">{{ post.title }}</a></h3>
-            <small><time>{{ post.date | date: '%B %d, %Y' }}</time></small>
-            <p class="excerpt">{{ post.excerpt }}</p>
+        {% assign works = site.works | reverse %}
+        {% for work in works %}
+          <div class="work">
+            <h3 style="margin-bottom: 0.4375rem;"><a href="{{ work.url | relative_url }}" style="box-shadow: none;">{{ work.title }}</a></h3>
+            <small><time>{{ work.date | date: '%B %d, %Y' }}</time></small>
+            <p class="excerpt">{{ work.excerpt }}</p>
           </div>
         {% endfor %}
       </div>
