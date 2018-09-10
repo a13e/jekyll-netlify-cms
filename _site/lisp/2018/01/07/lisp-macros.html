@@ -1,0 +1,35 @@
+<p>Lisp Macrosについてメモ</p>
+
+<h2 id="macros-マクロ">Macros (マクロ)</h2>
+
+<p>マクロを使うと標準的なLispの文法を拡張することができる
+技術的には、マクロはS式を引数にとり、<code class="highlighter-rouge">Lisp form</code>を返却する関数で、それが評価されるものとなる。</p>
+
+<h2 id="マクロを定義する">マクロを定義する</h2>
+
+<p><code class="highlighter-rouge">defmacro</code>というマクロでマクロを定義することができる
+下記がマクロの文法</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(defmacro macro-name (parameter-list))
+"Optional documentation string."
+body-form
+</code></pre></div></div>
+
+<p>下記例では<code class="highlighter-rouge">setTo10</code>という名前の、数値の引数をとり、その変数を10へ上書きするマクロを定義する</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(defmacro setTo10(num)
+(setq num 10)(print num))
+(setq x 25)
+(print x)
+(setTo10 x)
+</code></pre></div></div>
+
+<p>実行すると下記が表示される</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>25
+10
+</code></pre></div></div>
+
+<h2 id="参考">参考</h2>
+<p><a href="https://www.tutorialspoint.com/lisp/lisp_macros.htm">https://www.tutorialspoint.com/lisp/lisp_macros.htm</a></p>
+

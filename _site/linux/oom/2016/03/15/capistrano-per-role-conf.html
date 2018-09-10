@@ -1,0 +1,41 @@
+<h2 id="前提">前提</h2>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'net/ssh/proxy/command'</span>
+
+<span class="c1"># bin/cap --roles=web some_env deploy</span>
+
+<span class="n">role</span> <span class="ss">:web</span><span class="p">,</span> <span class="sx">%w{xx.xxx.xxx.xxx}</span>
+<span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="sx">%w{xx.xxx.xxx.xxx}</span>
+<span class="n">role</span> <span class="ss">:db</span><span class="p">,</span> <span class="sx">%w{xx.xxx.xxx.xxx}</span>
+
+<span class="n">set</span> <span class="ss">:ssh_options</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">user: </span><span class="s1">'some-user'</span><span class="p">,</span>
+  <span class="ss">keys: </span><span class="p">[</span><span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s1">'~/.ssh/id_rsa'</span><span class="p">)],</span>
+  <span class="ss">auth_methods: </span><span class="sx">%w(publickey)</span>
+<span class="p">}</span>
+
+<span class="n">on</span> <span class="n">roles</span><span class="p">(</span><span class="ss">:app</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s2">"/home/some-user/</span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:application</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="n">on</span> <span class="n">roles</span><span class="p">(</span><span class="ss">:web</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">set</span> <span class="ss">:deploy_to</span><span class="p">,</span> <span class="s2">"/var/www/</span><span class="si">#{</span><span class="n">fetch</span><span class="p">(</span><span class="ss">:application</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>上記のような<code class="highlighter-rouge">config/deploy/some_env.rb</code>を書いて</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">bin</span><span class="o">/</span><span class="n">cap</span> <span class="o">--</span><span class="n">roles</span><span class="o">=</span><span class="n">web</span> <span class="n">some_env</span> <span class="n">deploy</span></code></pre></figure>
+
+<p>を実行した場合に<code class="highlighter-rouge">rake db:migration</code>が走ったり、</p>
+
+<p><code class="highlighter-rouge">--roles=app</code>なのに<code class="highlighter-rouge">/var/www/app/</code>配下へデプロイしてしまう問題に直面した。</p>
+
+<h2 id="原因">原因</h2>
+
+<p><strong><em>どうやらIPが同じ場合にはcapistranoがそのIPに設定されているroleを全て実行してしまうようだった</em></strong>
+(書き方が悪い説はある。)</p>
+
+<p>その為今回はdeploy時に実行したくないroleがある場合はコメントアウトすることにした。(イケてない)</p>
+
+<p>確認用環境だし、そもそもサーバーが別々でないならpathを別にきる必要とかもない気がするので今回はまぁよしとすることにした。</p>
+

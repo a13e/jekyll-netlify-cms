@@ -1,0 +1,18 @@
+<h2 id="原因調査">原因調査</h2>
+
+<h3 id="iosandroid-で-html5-の-audiovideo-を任意のタイミングで再生する方法"><a href="http://dsuket.hatenablog.com/entry/2013/05/05/101430">iOS/Android で HTML5 の audio/video を任意のタイミングで再生する方法</a></h3>
+
+<blockquote>
+  <p>iOS の Safari では、ユーザーが携帯網で重量課金されるかもしれないから、preload と autoplay は効かないよ。ユーザーが何かアクションしないと、JavaScript での play() や load() もダメ。つまり、再生ボタンを押して play() を呼べるけど、onload で play() しても無効だから。</p>
+</blockquote>
+
+<h3 id="ios-specific-considerations"><a href="https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html">iOS-Specific Considerations</a></h3>
+
+<blockquote>
+  <p>In Safari on iOS (for all devices, including iPad), where the user may be on a cellular network and be charged per data unit, preload and autoplay are disabled. No data is loaded until the user initiates it. This means the JavaScript play() and load() methods are also inactive until the user initiates playback, unless the play() or load() method is triggered by user action. In other words, a user-initiated Play button works, but an onLoad=”play()” event does not.</p>
+</blockquote>
+
+<h2 id="対応">対応</h2>
+
+<p>サイト内でユーザーアクションの後で<code class="highlighter-rouge">audio.play()</code>するようにした。</p>
+

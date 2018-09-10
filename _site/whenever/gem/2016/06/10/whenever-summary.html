@@ -1,0 +1,23 @@
+<h2 id="github">github</h2>
+<p><a href="https://github.com/javan/whenever">whenever</a></p>
+
+<h2 id="rolesまわりに関して">rolesまわりに関して</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">whenever_roles</code>はデフォルトでは<code class="highlighter-rouge">db</code>が指定してある。</li>
+  <li>あるジョブを一部サーバーでのみcrontab設定をするよう制限したい場合は、そのジョブ定義に<code class="highlighter-rouge">:roles =&gt; [...]</code>を引数として渡してあげればよい。ただし<code class="highlighter-rouge">whenever_roles</code>にそのroleが追加されているようにしなければならない。</li>
+  <li><code class="highlighter-rouge">roles:</code>引数のないジョブは全サーバーに対して<code class="highlighter-rouge">whenever_roles</code>に定義された<code class="highlighter-rouge">role</code>でのデプロイ実行時にcrontab設定される。</li>
+</ul>
+
+<h2 id="whenever三原則">whenever三原則</h2>
+
+<ol>
+  <li><code class="highlighter-rouge">whenever_roles</code>にない<code class="highlighter-rouge">role</code>はcrontab追加をすることはない
+    <ul>
+      <li>@追加することはないどころか、同じサーバーだった場合何もない設定に上書きされてしまう気がする。</li>
+    </ul>
+  </li>
+  <li>ある<code class="highlighter-rouge">roleA</code>が<code class="highlighter-rouge">whenever_roles</code>にある場合、<code class="highlighter-rouge">roleA</code>サーバー<code class="highlighter-rouge">crontab</code>には<code class="highlighter-rouge">roleA</code>が<code class="highlighter-rouge">:roles</code>引数に存在するジョブ及び、<code class="highlighter-rouge">:roles</code>引数が渡されていないジョブが設定される。</li>
+  <li>あるジョブの<code class="highlighter-rouge">:roles</code>引数が<code class="highlighter-rouge">roleA</code>であり、<code class="highlighter-rouge">roleA</code>が<code class="highlighter-rouge">whenever_roles</code>にない場合はそのジョブはどのサーバーへのデプロイ時であってもcrontab設定されることはない</li>
+</ol>
+

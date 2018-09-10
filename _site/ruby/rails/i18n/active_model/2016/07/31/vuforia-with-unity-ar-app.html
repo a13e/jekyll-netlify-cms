@@ -1,0 +1,56 @@
+<p><img src="/assets/images/2016-07-31/5anniv_demo.jpeg" width="100%" /></p>
+
+<h2 id="はじまり">はじまり</h2>
+<p>pokemon goが世界的に人気があり、AR技術に興味があったので色々ググッてみて簡単なものをつくってみた。</p>
+
+<h2 id="つくったもの">つくったもの</h2>
+
+<p><img src="/assets/images/2016-07-31/giftee.jpg" style="width:50%;border: 1px #f2f2f2 solid;" />
+<img src="/assets/images/2016-07-31/giftee_5anniv_logo.png" style="width:48%;border: 1px #f2f2f2 solid;" /></p>
+
+<p>上記２つの画像をマーカーとして設定して、アプリケーションがそれを見つけた場合に関連する動画がみれるというもの。</p>
+
+<h2 id="今回説明を省略していること">今回説明を省略していること</h2>
+<ul>
+  <li>Vuforia会員登録</li>
+  <li>Unity会員登録</li>
+</ul>
+
+<h2 id="vuforia-license--target">Vuforia License + Target</h2>
+
+<p><a href="https://developer.vuforia.com/">https://developer.vuforia.com/</a>から行う</p>
+
+<p>このあたりは<a href="http://www.atmarkit.co.jp/ait/articles/1508/24/news025_2.html">Unityでも使える無料ARライブラリVuforiaの基礎知識とライセンス登録、インストール、簡単な使い方</a>がうまくまとめてくれている。</p>
+
+<h2 id="unity-with-vuforia">Unity with Vuforia</h2>
+
+<p>このあたりは<a href="http://qiita.com/JunSuzukiJapan/items/f6ed23bb519d01fdaaa3">Unity + Vuforia でARな動画再生を試してみた</a>がわかりやすかった。</p>
+
+<h4 id="arcamera設定">ArCamera設定</h4>
+
+<p>上記記事内【ARCameraの設定】のなかに<code class="highlighter-rouge">VideoPlaybackController</code>をARCameraに設定する部分がある。
+2016-07-31現在では<a href="https://developer.vuforia.com/downloads/samples">Samples</a>からAdvanced TopicsのUnity向けのpackageを持ってきてもそんなものはなかった。
+結果として動画再生がうまく行われない問題にハマった。</p>
+
+<p>解決策としては、<code class="highlighter-rouge">ARCamera</code>へ</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">VideoPlaybackTapHandler</span>
+<span class="no">PlayVideo</span>
+<span class="no">VideoPlaybackMenuOptions</span></code></pre></figure>
+
+<p>をScriptとして追加した。</p>
+
+<h2 id="できたもの">できたもの</h2>
+
+<p><img src="/assets/images/2016-07-31/5anniv_demo.jpeg" style="width:50%;border: 1px #f2f2f2 solid;" />
+<img src="/assets/images/2016-07-31/welcome_giftee_demo.jpeg" style="width:48%;border: 1px #f2f2f2 solid;" /></p>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+  <li><a href="http://www.atmarkit.co.jp/ait/articles/1508/24/news025.html">Unityでも使える無料ARライブラリVuforiaの基礎知識とライセンス登録、インストール、簡単な使い方 (1/3)</a></li>
+  <li><a href="http://www.atmarkit.co.jp/ait/articles/1601/08/news034.html">Vuforiaで立体をARマーカーにしてスケスケ＆動画再生 (1/4)</a></li>
+  <li><a href="http://makers.hatenablog.com/entry/2013/12/27/191636">【３０分でできる】Unityで簡単にARアプリを作る</a></li>
+  <li><a href="http://qiita.com/JunSuzukiJapan/items/f6ed23bb519d01fdaaa3">Unity + Vuforia でARな動画再生を試してみた</a></li>
+</ul>
+

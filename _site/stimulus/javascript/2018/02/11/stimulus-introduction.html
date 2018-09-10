@@ -1,0 +1,39 @@
+<p><a href="https://stimulusjs.org/handbook/introduction">Stimulus Introduction</a>の感想・メモ。</p>
+
+<h2 id="全体としての感想">全体としての感想</h2>
+
+<ul>
+  <li>全体としてStimulusはバックエンドアプリケーションが生成したHTML DOMに対する操作をする機能のためのライブラリとしてデザインされており小さくシンプルであるのが印象的。</li>
+  <li>生成済みDOMへの操作のみが使用用途であることが事前にわかりきっているケースであれば、jQueryで自前のDOM手術をするよりもはるかに保守性を高くコストを抑えてプロダクト開発ができると感じた。</li>
+  <li>SPAをつくるための機能が一切ないので、チーム開発においては開発方針が絞れる意味でも良いと感じた。(一部メンバーが非同期処理で暴れるみたいなことを防ぎやすい)</li>
+  <li>データ追加系に関しては下記に記載のようにもう少しサポートしてもよいのではないかと感じた。</li>
+</ul>
+
+<h2 id="非同期ロードからの要素追加に関して">非同期ロードからの要素追加に関して</h2>
+
+<blockquote>
+  <p>There are cases where you’d want Stimulus to create new DOM elements, and you’re definitely free to do that. We might even add some sugar to make it easier in the future. But it’s the minority use case. The focus is on manipulating, not creating elements.</p>
+</blockquote>
+
+<p>これは<a href="https://m.signalvnoise.com/stimulus-1-0-a-modest-javascript-framework-for-the-html-you-already-have-f04307009130">DHHさんが書いたMedium</a>からの抜粋だが、この一文がどういうことなのかが、Introduction内のこの章ではっきりとした。
+現行仕様では、データに応じて、要素を増やすには下記のような形で、直接DOMをユーザー側で操作する必要が出てしまう。(Welcome to DOM surgery party!)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import { Controller } from "stimulus"
+
+export default class extends Controller {
+  connect() {
+    this.load()
+  }
+
+  load() {
+    fetch(this.data.get("url"))
+      .then(response =&gt; response.text())
+      .then(html =&gt; {
+        this.element.innerHTML = html
+      })
+  }
+}
+</code></pre></div></div>
+
+<p>個人的にはStimulusを使用するケース(管理画面等)においても、リスト型のデータに新しい要素をユーザー起因のイベントで追加して、画面更新するような用途は多いので、アップデートが期待される。</p>
+
