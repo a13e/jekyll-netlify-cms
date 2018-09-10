@@ -12,9 +12,10 @@ permalink: /about/
 個人でiOSアプリもつくったりします。
 
 ## Products
-- [dict - 活きた英語でリスニングを鍛えるアプリ](https://itunes.apple.com/us/app/dict-dictation-app/id1415273372?l=ja&ls=1&mt=8)
-- [株式会社ギフティ 受付アプリ](/works/2)
-- [オフィス利用状況把握システム](/works/2)
+- [dict - 活きた英語でリスニングを鍛えるアプリ](/works/dict)
+- [株式会社ギフティ 受付アプリ](/works/knock)
+- [オフィス利用状況把握システム](/works/being)
+- [調 - sirabe](/works/sirabe)
 
 
 ## Projects
