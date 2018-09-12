@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Begin Jekyll SEO tag v2.4.0 -->
-    <title>a13e</title>
+    <title>{{ page.title }}</title>
     <meta name="generator" content="Jekyll v3.8.0" />
     <meta property="og:title" content="a13e Blog" />
     <meta property="og:locale" content="en_US" />
@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="/assets/stylesheets/index.css">
     <script src="https://identity-js.netlify.com/v1/netlify-identity-widget.js"></script>
+    {% include twitter_card.html %}
   </head>
   <body>
     <div class="post-content">
@@ -36,6 +37,9 @@
           <img src="/assets/images/profile.jpg" style="margin-right: 0.875rem; margin-bottom: 0px; width: 3.5rem; height: 3.5rem; border-radius: 1.75rem;" />
           <p>Written by <strong>Kohei Abe</strong> who lives and works in Tokyo building useful things.<a href="https://twitter.com/a13e_" target="_blank">You should follow him on Twitter</a></p>
         </div>
+      </div>
+      <div>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" data-url="{{ site.url }}{{ page.url }}" data-via="a13e_">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
     </div>
   </body>
