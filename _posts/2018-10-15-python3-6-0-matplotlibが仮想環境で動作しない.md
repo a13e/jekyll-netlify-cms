@@ -21,4 +21,5 @@ categories: python
 `virtualenv`が作成する仮想環境では、それが`framwork build`から作成された場合であっても、`non-framework build`のPythonが使用されてしまう。
 
 ## 参考
-[Working with Matplotlib on OSX](https://matplotlib.org/faq/osx_framework.html)
+- [Working with Matplotlib on OSX](https://matplotlib.org/faq/osx_framework.html)
+
